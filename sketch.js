@@ -13,7 +13,7 @@ function setup() {
   // rectMode(CENTER);
 
   angleMode(DEGREES);
-  frameRate(30);
+  frameRate(60);
   background(random(0, 225));
   strokeWeight(5);
 
@@ -36,10 +36,11 @@ function draw() {
   
   for (let i = 0; i < 10; i++){
     stroke(225-(20*i));
-    line(0, random1[i], windowWidth, random2[i]);
+    //line(0, random1[i], windowWidth, random2[i]);
     push();
     //ellipse(lerp(0, windowWidth, cont), lerp(random1[i], random2[i], cont), 50, 50);
     translate(lerp(0, windowWidth, cont), lerp(random1[i], random2[i], cont));
+    //translate(0, -40);
     fill(300);
     ellipse(0, 0, sphereSize, sphereSize);
     fill(225-(20*i));
