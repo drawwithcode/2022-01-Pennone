@@ -14,7 +14,7 @@ function setup() {
 
   angleMode(DEGREES);
   frameRate(30);
-  background("white");
+  background(random(0, 225));
   strokeWeight(5);
 
   random1 = [random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight)];
