@@ -71,7 +71,7 @@ function draw() {
 
   if(frameCount % 150 == 0){
     numCircles += 1;
-    circles.push(new Circles(random(windowWidth), random(windowHeight), random(20), random(2), random(2)));
+    circles.push(new Circles(mouseX, mouseY, random(20), random(2), random(2)));
   }
 
 }
