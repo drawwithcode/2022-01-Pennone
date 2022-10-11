@@ -1,4 +1,4 @@
-class Bubble {
+class Circles {
   constructor(xpos, ypos, radius){
     this.x = xpos;
     this.y = ypos;
@@ -18,9 +18,9 @@ class Bubble {
   }
 }
 
-let bubbles = [];
+let circles = [];
 
-let numBubbles = 1000;
+let numCircles = 1000;
 
 function preload() {
   // put preload code here
@@ -35,16 +35,20 @@ function setup() {
 
   noStroke();
 
-  for (let i = 0; i < numBubbles; i++){
-    bubbles.push(new Bubble(width/2, height/2, random(20)));
+  for (let i = 0; i < numCircles; i++){
+    circles.push(new Circles(width/2, height/2, random(20)));
   }
 }
 
 function draw() {
   // put drawing code here
 
-  for(let i = 0; i < bubbles.length; i++){
-    bubbles[i].move();
+  for(let i = 0; i < circles.length; i++){
+    circles[i].move();
   }
+
+}
+
+function mouseClicked() {
 
 }
