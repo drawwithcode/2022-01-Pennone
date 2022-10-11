@@ -1,50 +1,50 @@
+class Bubble {
+  constructor(xpos, ypos, radius){
+    this.x = xpos;
+    this.y = ypos;
+    this.r = radius;
+    this.color = [random(255), random(255), random(255)];
+  }
+
+  move() {
+    this.x += random(-5, 5);
+    this.y += random(-5, 5);
+
+    push();
+    translate(this.x, this.y);
+    fill(this.color);
+    circle(0, 0, this.r);
+    pop();
+  }
+}
+
+let bubbles = [];
+
+let numBubbles = 1000;
+
 function preload() {
   // put preload code here
 }
 
-let random1;
-
-let random2;
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // put setup code here
-  // rectMode(CENTER);
+  frameRate(30);
 
   angleMode(DEGREES);
-  frameRate(60);
-  background("black");
-  strokeWeight(5);
 
-  random1 = [random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight)];
+  noStroke();
 
-  random2 = [random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight)];
-
-  for (let i = 0; i < 8; i++){
-    console.log(random1[i], random2[i]);
+  for (let i = 0; i < numBubbles; i++){
+    bubbles.push(new Bubble(width/2, height/2, random(20)));
   }
-
 }
 
 function draw() {
   // put drawing code here
 
-  let cont = frameCount/600;
-
-  const sphereSize = 75;
-  
-  for (let i = 0; i < 10; i++){
-    stroke(225-(20*i));
-    //line(0, random1[i], windowWidth, random2[i]);
-    push();
-    //ellipse(lerp(0, windowWidth, cont), lerp(random1[i], random2[i], cont), 50, 50);
-    translate(lerp(0, windowWidth, cont), lerp(random1[i], random2[i], cont));
-    //translate(0, -40);
-    fill(300);
-    ellipse(0, 0, sphereSize, sphereSize);
-    fill(225-(20*i));
-    ellipse(0, 0, sphereSize, sphereSize);
-    pop();
+  for(let i = 0; i < bubbles.length; i++){
+    bubbles[i].move();
   }
+
 }
