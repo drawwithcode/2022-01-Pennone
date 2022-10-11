@@ -52,6 +52,11 @@ function draw() {
     circles[i].move();
   }
 
+  if(frameCount % 150 == 0){
+    numCircles += 1;
+    circles.push(new Circles(mouseX, mouseY, random(20), random(2), random(2)));
+  }
+
 }
 
 function mouseClicked() {
