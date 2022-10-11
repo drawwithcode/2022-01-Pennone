@@ -32,7 +32,6 @@ let bb;
 let rbb;
 let gbb;
 let bbb;
-let timebg = 0;
 let cycle = true;
 
 function preload() {
@@ -64,8 +63,6 @@ function setup() {
 function draw() {
   // put drawing code here
 
-  timebg += 0.006;
-
   background(lerp(rb, rbb, frameCount/150), lerp(gb, gbb, frameCount/150), lerp(bb,bbb, frameCount/150));
 
   for(let i = 0; i < numCircles + 1; i++){
@@ -74,7 +71,7 @@ function draw() {
 
   if(frameCount % 150 == 0){
     numCircles += 1;
-    circles.push(new Circles(mouseX, mouseY, random(20), random(2), random(2)));
+    circles.push(new Circles(random(windowWidth), random(windowHeight), random(20), random(2), random(2)));
   }
 
 }
