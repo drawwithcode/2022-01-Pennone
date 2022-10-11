@@ -1,82 +1,47 @@
-class Circles {
-  constructor(xpos, ypos, radius, element, rate){
-    this.x = xpos;
-    this.y = ypos;
-    this.r = radius;
-    this.e = element;
-    this.ra = rate;
-    this.color = [random(255), random(255), random(255)];
-  }
-
-  move() {
-    this.r += this.ra;
-
-    push();
-    fill(this.color);
-    if (this.e >= 0 && this.e < 1){
-      circle(this.x, this.y, this.r);
-    } else if (this.e >= 1){
-      square(this.x, this.y, this.r);
-    }
-    pop();
-  }
-}
-
-let circles = [];
-
-let numCircles = 0;
-
-let rb;
-let gb;
-let bb;
-let rbb;
-let gbb;
-let bbb;
-let cycle = true;
-
 function preload() {
   // put preload code here
 }
 
+let random1;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  frameRate(30);
+   // put setup code here
+  // rectMode(CENTER);
 
   angleMode(DEGREES);
-  rectMode(CENTER);
 
-  noStroke();
+  frameRate(60);
+  background("black");
+  strokeWeight(5);
 
-  console.log("click wherever");
+  random1 = [random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight)];
+  random2 = [random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight), random(0, windowHeight)];
 
-  rb = random(255);
-  gb = random(255);
-  bb = random(255);
-  rbb = random(255);
-  gbb = random(255);
-  bbb = random(255);
+  for (let i = 0; i < 8; i++){
+    console.log(random1[i], random2[i]);
+  }
 
-  circles.push(new Circles(random(windowWidth), random(windowHeight), random(20), random(2), random(2)));
 }
 
 function draw() {
   // put drawing code here
 
-  background(lerp(rb, rbb, frameCount/150), lerp(gb, gbb, frameCount/150), lerp(bb,bbb, frameCount/150));
+  let cont = frameCount/600;
 
-  for(let i = 0; i < numCircles + 1; i++){
-    circles[i].move();
+  const sphereSize = 75;
+  
+  for (let i = 0; i < 10; i++){
+    stroke(225-(20*i));
+    //line(0, random1[i], windowWidth, random2[i]);
+    push();
+    //ellipse(lerp(0, windowWidth, cont), lerp(random1[i], random2[i], cont), 50, 50);
+    translate(lerp(0, windowWidth, cont), lerp(random1[i], random2[i], cont));
+    //translate(0, -40);
+    fill(300);
+    ellipse(0, 0, sphereSize, sphereSize);
+    fill(225-(20*i));
+    ellipse(0, 0, sphereSize, sphereSize);
+    pop();
   }
-
-  if(frameCount % 150 == 0){
-    numCircles += 1;
-    circles.push(new Circles(mouseX, mouseY, random(20), random(2), random(2)));
-  }
-
-}
-
-function mouseClicked() {
-  numCircles += 1;
-  circles.push(new Circles(mouseX, mouseY, random(20), random(2), random(2)));
 }
